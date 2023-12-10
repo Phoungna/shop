@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .space{
+        padding: auto;
+    }
+</style>
+<body>
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -12,7 +25,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ isset ($guard)? url($guard.'/login') :route('login') }}">
             @csrf
 
             <div>
@@ -34,10 +47,19 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="ml-4 underline" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
+                <div>
+
+                </div>
+                <div class="space">              
+                    <a class="ml-4" href="{{ route('register') }}" >
+                        {{ __('register') }}
+                    </a>
+                </div>
+               
 
                 <x-jet-button class="ml-4">
                     {{ __('Log in') }}
@@ -46,3 +68,8 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+
+</body>
+</html>
+
+
